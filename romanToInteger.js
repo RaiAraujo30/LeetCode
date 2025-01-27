@@ -1,4 +1,3 @@
-
 /**
  Symbol       Value
 I             1
@@ -22,36 +21,27 @@ Given a roman numeral, convert it to an integer.
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
+var romanToInt = function (s) {
+  var symbols = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
 
-    var romanNumerals = {
-        "I": 1,
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000
+  let soma = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    if (symbols[s[i]] < symbols[s[i + 1]]) {
+      soma = soma - symbols[s[i]];
+    } else {
+      soma = soma + symbols[s[i]];
     }
-
-    var result = 0;
-
-    
-
-    for (let i = 0; i < s.length; i++) {
-        // Se o valor do próximo número for maior que o valor atual,
-        // subtraia o valor atual do resultado, ex:(IV) tirar I de V = 4    
-        if (romanNumerals[s[i]] < romanNumerals[s[i + 1]]) {
-            result = result - romanNumerals[s[i]];
-        } else {
-            // Se o valor do próximo número for menor que o valor atual,
-            // adicione o valor atual ao resultado, ex:(VI) adicionar I a V = 6
-            result += romanNumerals[s[i]];
-            console.log(result)
-        }
-    }
-
-    return result;
+}
+  return soma;
 };
 
-console.log(romanToInt("IX")) // 3
+console.log(romanToInt("III")); // 3

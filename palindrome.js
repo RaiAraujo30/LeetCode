@@ -3,16 +3,16 @@
  * @return {boolean}
  */
 
-var isPalindrome = function(x) {
+// Given an integer x, return true if x is a palindrome, and false otherwise.
+var isPalindrome = function palindrome(number){
+    let str = number.toString()
+    let newB = str.split('')
+    let newA = str.split('').reverse()
 
-    var str = x.toString()
-    var newArray = str.split('').reverse().join('')
-    
-    console.log(newArray)
+    if (newB.join('') === newA.join('')){
+        return true
+    }
+    return false;
+}
 
-   return newArray === str
-
-    
-};
-
-console.log(isPalindrome(123))
+console.log(isPalindrome(121))
