@@ -3,22 +3,22 @@
  * @return {string}
  */
 var longestCommonPrefix = function(strs) {
-    if (strs.length === 0) return "";
 
-    // Assume o primeiro elemento como o prefixo inicial
-    let prefixo = strs[0];
+    if (!strs.length) return ""; 
+    let prefix = "";
+    for( let i = 0; i < strs[0].length; i++){
+        const char = strs[0][i]
 
-    // Itera sobre as palavras restantes
-    for (let i = 1; i < strs.length; i++) {
-        // Reduz o prefixo até que ele seja um prefixo da palavra atual
-        while (strs[i].indexOf(prefixo) !== 0) {
-            prefixo = prefixo.substring(0, prefixo.length - 1);
-            if (prefixo === "") return "";
+        for( let j = 1; j < strs.length; j++){
+            if ( i >= strs[j].length || strs[j][i] != char){
+                console.log("prefix: " +prefix)
+                return prefix
+            }
         }
+        prefix += char
     }
-    console.log(prefixo)
-    return prefixo;
-};
+    return prefix
 
-let array = ["flower","flow","flight"]
-longestCommonPrefix(array)
+}
+
+console.log(longestCommonPrefix(["flower","flow","flight"]))
